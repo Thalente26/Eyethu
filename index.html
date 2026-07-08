@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Eyethu Commerce – Waitlist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <style>
+        /* ── Reset & Base ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #1B4332;
+            --primary-light: #2D6A4F;
+            --primary-subtle: #40916C;
+            --primary-bg: #F5F8F5;
+            --warm-white: #FAF8F5;
+            --card-bg: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-subtle: #8A8A8A;
+            --accent: #D4A373;
+            --border: #E8E0D8;
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.10);
+            --radius: 24px;
+            --radius-sm: 14px;
+            --radius-xs: 10px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--warm-white);
+            color: var(--text-primary);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* ── App Container ── */
+        .app {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: relative;
+            min-height: 700px;
+            min-height: 80dvh;
+            transition: min-height 0.4s ease;
+        }
+
+        /* ── Pages ── */
+        .page {
+            display: none;
+            padding: 36px 28px 32px;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── Typography ── */
+        .brand {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .brand svg {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+
+        .tagline {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            letter-spacing: -0.2px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .heading {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .sub-heading {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-subtle);
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+
+        .body-text {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .body-text strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: var(--primary-bg);
+            border-radius: var(--radius-sm);
+            padding: 18px 20px;
+            margin: 18px 0 22px;
+            border-left: 4px solid var(--primary-subtle);
+        }
+
+        .highlight-box p {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .highlight-box .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 60px;
+            font-family: var(--font);
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: -0.2px;
+            cursor: pointer;
+            transition: all var(--transition);
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(27, 67, 50, 0.25);
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 24px rgba(27, 67, 50, 0.35);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: none;
+            border: 1.5px solid var(--border);
+            padding: 14px 28px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-bg);
+            box-shadow: none;
+            transform: scale(1.01);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: #fff;
+            padding: 18px 32px;
+            font-size: 17px;
+            margin-top: 6px;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .btn-back {
+            background: transparent;
+            color: var(--text-subtle);
+            box-shadow: none;
+            border: none;
+            padding: 10px 0;
+            font-size: 14px;
+            font-weight: 400;
+            justify-content: flex-start;
+            gap: 6px;
+            width: auto;
+        }
+
+        .btn-back:hover {
+            color: var(--text-primary);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-back svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ── Category Cards ── */
+        .categories {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 6px;
+        }
+
+        .category-card {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all var(--transition);
+            aspect-ratio: 16 / 9;
+            background: var(--primary-bg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-card:active {
+            transform: scale(0.98);
+        }
+
+        .category-card .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover .card-image {
+            transform: scale(1.03);
+        }
+
+        .category-card .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.55) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 22px 24px 24px;
+            color: #fff;
+        }
+
+        .category-card .card-overlay .card-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+        }
+
+        .category-card .card-overlay .card-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .category-card .card-overlay h3 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            margin-bottom: 2px;
+        }
+
+        .category-card .card-overlay p {
+            font-size: 13px;
+            font-weight: 400;
+            opacity: 0.85;
+            line-height: 1.4;
+            max-width: 90%;
+        }
+
+        .category-card .card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ── Form ── */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            letter-spacing: -0.1px;
+        }
+
+        .form-group label .required {
+            color: #D16B6B;
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-xs);
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--text-primary);
+            background: #fff;
+            transition: all var(--transition);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-subtle);
+            box-shadow: 0 0 0 4px rgba(64, 145, 108, 0.12);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-subtle);
+            font-weight: 300;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+            line-height: 1.5;
+        }
+
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8A8A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 44px;
+        }
+
+        .form-group select option {
+            padding: 8px;
+        }
+
+        .category-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-bg);
+            padding: 6px 16px 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 16px;
+            border: 1px solid rgba(45, 106, 79, 0.15);
+        }
+
+        .category-tag svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ── Status messages ── */
+        .form-status {
+            margin-top: 16px;
+            padding: 14px 18px;
+            border-radius: var(--radius-xs);
+            font-size: 14px;
+            font-weight: 400;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .form-status.success {
+            display: block;
+            background: #E6F4EA;
+            color: #1B6B3A;
+            border: 1px solid #B7E0C4;
+        }
+
+        .form-status.error {
+            display: block;
+            background: #FDEAEA;
+            color: #B33A3A;
+            border: 1px solid #F5C8C8;
+        }
+
+        .form-status.loading {
+            display: block;
+            background: #F0F4F8;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        /* ── Success overlay ── */
+        .success-state {
+            display: none;
+            text-align: center;
+            padding: 40px 20px 30px;
+            animation: fadeUp 0.6s ease forwards;
+        }
+
+        .success-state.active {
+            display: block;
+        }
+
+        .success-state .success-icon {
+            width: 72px;
+            height: 72px;
+            background: #E6F4EA;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+
+        .success-state .success-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: #1B6B3A;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .success-state h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .success-state p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        /* ── Back to top ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-subtle);
+            text-decoration: none;
+            margin-top: 18px;
+            transition: color var(--transition);
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ── Scrollbar hide ── */
+        .app::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        /* ── Responsive ── */
+        @media (min-width: 640px) {
+            body {
+                padding: 32px;
+            }
+
+            .app {
+                max-width: 460px;
+                border-radius: 32px;
+                min-height: 600px;
+            }
+
+            .page {
+                padding: 44px 36px 36px;
+            }
+
+            .brand {
+                font-size: 30px;
+            }
+
+            .heading {
+                font-size: 26px;
+            }
+
+            .category-card {
+                aspect-ratio: 16 / 8.5;
+            }
+
+            .category-card .card-overlay {
+                padding: 28px 30px 28px;
+            }
+
+            .category-card .card-overlay h3 {
+                font-size: 22px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            body {
+                padding: 40px;
+                align-items: center;
+            }
+
+            .app {
+                max-width: 500px;
+                border-radius: 36px;
+                min-height: 640px;
+                box-shadow: 0 24px 64px rgba(0, 0, 0, 0.10);
+            }
+
+            .page {
+                padding: 48px 40px 40px;
+            }
+
+            .brand {
+                font-size: 32px;
+            }
+
+            .category-card {
+                aspect-ratio: 16 / 8;
+                border-radius: 18px;
+            }
+
+            .category-card .card-overlay {
+                padding: 30px 32px 28px;
+            }
+
+            .btn {
+                padding: 18px 36px;
+                font-size: 17px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 16px 18px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .page {
+                padding: 24px 18px 20px;
+            }
+
+            .brand {
+                font-size: 22px;
+            }
+
+            .heading {
+                font-size: 19px;
+            }
+
+            .body-text {
+                font-size: 14px;
+            }
+
+            .category-card .card-overlay h3 {
+                font-size: 17px;
+            }
+
+            .category-card .card-overlay p {
+                font-size: 12px;
+            }
+
+            .btn {
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+        }
+
+        /* ── Utility ── */
+        .mt-4 {
+            margin-top: 4px;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .mb-4 {
+            margin-bottom: 4px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex {
+            display: flex;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .gap-6 {
+            gap: 6px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app" id="app">
+
+        <!-- ═══ PAGE 1: LANDING ═══ -->
+        <div class="page active" id="page-landing">
+            <div class="brand">
+                <!-- Leaf / sprout icon -->
+                <svg viewBox="0 0 32 32" fill="none" stroke="#1B4332" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 30V16M16 16C16 16 22 10 22 6C22 4 20 2 18 4C16 6 16 10 16 16ZM16 16C16 16 10 10 10 6C10 4 12 2 14 4C16 6 16 10 16 16Z" />
+                    <path d="M16 30C16 30 8 26 8 20C8 16 12 14 16 16C20 14 24 16 24 20C24 26 16 30 16 30Z" opacity="0.3" />
+                </svg>
+                Eyethu Commerce
+            </div>
+
+            <p class="tagline">Fresh produce · Fair prices · Local impact</p>
+
+            <h1 class="heading">Join the Waitlist</h1>
+            <p class="sub-heading">Be among the first to access South Africa's new direct farm-to-spaza marketplace.</p>
+
+            <div class="body-text">
+                <strong>Eyethu Commerce</strong> connects local farmers directly with SA spaza shops — no middlemen, no foreign imports. Just fresh, affordable produce that helps our communities thrive.
+            </div>
+
+            <div class="highlight-box">
+                <p>
+                    <span class="price">R50</span> per month membership<br />
+                    <span style="font-size:13px;color:var(--text-subtle);">Launching soon — secure your spot today.</span>
+                </p>
+            </div>
+
+            <button class="btn" id="btn-join">
+                Join the Waitlist
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="M12 5l7 7-7 7" />
+                </svg>
+            </button>
+
+            <div style="margin-top:20px;text-align:center;">
+                <span style="font-size:12px;color:var(--text-subtle);font-weight:400;">🇿🇦 For South African farmers &amp; spaza shops only</span>
+            </div>
+        </div>
+
+        <!-- ═══ PAGE 2: CATEGORIES ═══ -->
+        <div class="page" id="page-categories">
+            <button class="btn-back" id="btn-back-landing">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5" />
+                    <path d="M12 19l-7-7 7-7" />
+                </svg>
+                Back
+            </button>
+
+            <h2 class="heading" style="margin-top:2px;">Choose your role</h2>
+            <p class="sub-heading">Select the category that fits you best.</p>
+
+            <div class="categories" id="categories-container">
+                <!-- Farmer -->
+                <div class="category-card" data-category="farmer" tabindex="0" role="button" aria-label="Select Farmer">
+                    <img
+                    class="card-image"
+                    src="farmer.jpg"
+                    alt="Farmer in a field"
+                    loading="lazy"
+                    />
+                    <div class="card-overlay">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                <path d="M2 17l10 5 10-5" />
+                                <path d="M2 12l10 5 10-5" />
+                                <path d="M12 22V12" />
+                            </svg>
+                        </div>
+                        <h3>Farmer</h3>
+                        <p>Sell your fresh produce directly to spaza shops.</p>
+                        <span class="card-badge">I'm a Farmer</span>
+                    </div>
+                </div>
+
+                <!-- Spaza Shop -->
+                <div class="category-card" data-category="spaza" tabindex="0" role="button" aria-label="Select Spaza Shop">
+                    <img
+                    class="card-image"
+                    src="shop.jpg"
+                    alt="Spaza shop"
+                    loading="lazy"
+                    />
+                    <div class="card-overlay">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                            </svg>
+                        </div>
+                        <h3>Spaza Shop</h3>
+                        <p>Buy fresh, affordable produce direct from local farmers.</p>
+                        <span class="card-badge">I'm a Spaza</span>
+                    </div>
+                </div>
+
+                <!-- Delivery Driver -->
+                <div class="category-card" data-category="delivery" tabindex="0" role="button" aria-label="Select Delivery Driver">
+                    <img
+                    class="card-image"
+                    src="driver.png"
+                    alt="Delivery driver"
+                    loading="lazy"
+                    />
+                    <div class="card-overlay">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="1" y="3" width="15" height="13" rx="2" />
+                                <polyline points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                <circle cx="5.5" cy="18" r="2.5" />
+                                <circle cx="18.5" cy="18" r="2.5" />
+                            </svg>
+                        </div>
+                        <h3>Delivery Driver</h3>
+                        <p>Move fresh produce from farm to shop, earn per delivery.</p>
+                        <span class="card-badge">I'm a Driver</span>
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-size:12px;color:var(--text-subtle);margin-top:16px;text-align:center;font-weight:400;">
+                Tap a card above to continue
+            </p>
+        </div>
+
+        <!-- ═══ PAGE 3: FORM ═══ -->
+        <div class="page" id="page-form">
+            <button class="btn-back" id="btn-back-categories">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5" />
+                    <path d="M12 19l-7-7 7-7" />
+                </svg>
+                Back
+            </button>
+
+            <h2 class="heading" style="margin-top:2px;">Join the waitlist</h2>
+
+            <div class="category-tag" id="selected-category-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                    <path d="M12 22V12" />
+                </svg>
+                <span id="category-label">Farmer</span>
+            </div>
+
+            <form id="waitlist-form" novalidate>
+                <input type="hidden" name="category" id="form-category" value="farmer" />
+
+                <div class="form-group">
+                    <label for="full-name">Full name <span class="required">*</span></label>
+                    <input type="text" id="full-name" name="full_name" placeholder="e.g. Thabo Mokoena" required autocomplete="name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="business-name">Business / Farm name <span class="required">*</span></label>
+                    <input type="text" id="business-name" name="business_name" placeholder="e.g. Mokoena Farms" required autocomplete="organization" />
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone / WhatsApp <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g. 082 123 4567" required autocomplete="tel" />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="e.g. thabo@mokoena.co.za" required autocomplete="email" />
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Physical address <span class="required">*</span></label>
+                    <input type="text" id="address" name="address" placeholder="Street, town, suburb" required autocomplete="street-address" />
+                </div>
+
+                <div class="form-group">
+                    <label for="province">Province <span class="required">*</span></label>
+                    <select id="province" name="province" required>
+                        <option value="">Select your province</option>
+                        <option value="Eastern Cape">Eastern Cape</option>
+                        <option value="Free State">Free State</option>
+                        <option value="Gauteng">Gauteng</option>
+                        <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                        <option value="Limpopo">Limpopo</option>
+                        <option value="Mpumalanga">Mpumalanga</option>
+                        <option value="Northern Cape">Northern Cape</option>
+                        <option value="North West">North West</option>
+                        <option value="Western Cape">Western Cape</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hear-about">How did you hear about us?</label>
+                    <input type="text" id="hear-about" name="hear_about" placeholder="e.g. Facebook, friend, radio" />
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Anything else you'd like us to know?</label>
+                    <textarea id="notes" name="notes" placeholder="e.g. size of farm, types of produce, delivery area…" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-submit" id="form-submit-btn">
+                    Submit
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+
+                <div class="form-status" id="form-status"></div>
+            </form>
+
+            <!-- Success state (hidden by default) -->
+            <div class="success-state" id="success-state">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                </div>
+                <h3>You're on the list! 🎉</h3>
+                <p>We'll notify you as soon as Eyethu Commerce launches. Check your email for a confirmation.</p>
+                <button class="btn btn-secondary" id="btn-reset" style="margin-top:20px;width:auto;padding:12px 28px;">
+                    Back to start
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ── DOM refs ──
+            const app = document.getElementById('app');
+            const pageLanding = document.getElementById('page-landing');
+            const pageCategories = document.getElementById('page-categories');
+            const pageForm = document.getElementById('page-form');
+
+            const btnJoin = document.getElementById('btn-join');
+            const btnBackLanding = document.getElementById('btn-back-landing');
+            const btnBackCategories = document.getElementById('btn-back-categories');
+            const btnReset = document.getElementById('btn-reset');
+
+            const categoryCards = document.querySelectorAll('.category-card');
+            const categoryLabel = document.getElementById('category-label');
+            const formCategory = document.getElementById('form-category');
+
+            const form = document.getElementById('waitlist-form');
+            const submitBtn = document.getElementById('form-submit-btn');
+            const statusEl = document.getElementById('form-status');
+            const successState = document.getElementById('success-state');
+
+            // ── State ──
+            let selectedCategory = 'farmer';
+            let isSubmitting = false;
+
+            // ── Page navigation ──
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const target = document.getElementById(pageId);
+                if (target) {
+                    target.classList.add('active');
+                    // re-trigger animation
+                    target.style.animation = 'none';
+                    requestAnimationFrame(() => {
+                        target.style.animation = '';
+                    });
+                }
+                // scroll to top of app
+                app.scrollTop = 0;
+                if (app.parentElement) {
+                    app.parentElement.scrollTop = 0;
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // ── Category selection ──
+            function selectCategory(category) {
+                selectedCategory = category;
+                formCategory.value = category;
+
+                const labels = {
+                    farmer: 'Farmer',
+                    spaza: 'Spaza Shop',
+                    delivery: 'Delivery Driver'
+                };
+                categoryLabel.textContent = labels[category] || 'Farmer';
+
+                // Update tag icon
+                const tagIcon = document.querySelector('.category-tag svg');
+                if (tagIcon) {
+                    const paths = {
+                        farmer: '<path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/><path d="M12 22V12"/>',
+                        spaza: '<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+                        delivery: '<rect x="1" y="3" width="15" height="13" rx="2"/><polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18" r="2.5"/><circle cx="18.5" cy="18" r="2.5"/>'
+                    };
+                    tagIcon.innerHTML = paths[category] || paths.farmer;
+                }
+
+                showPage('page-form');
+            }
+
+            // ── Form submission ──
+            async function handleSubmit(e) {
+                e.preventDefault();
+
+                if (isSubmitting) return;
+
+                // Basic validation
+                const required = form.querySelectorAll('[required]');
+                let valid = true;
+                required.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.focus();
+                        field.style.borderColor = '#D16B6B';
+                        valid = false;
+                    } else {
+                        field.style.borderColor = '';
+                    }
+                });
+
+                if (!valid) {
+                    statusEl.className = 'form-status error';
+                    statusEl.textContent = 'Please fill in all required fields.';
+                    statusEl.style.display = 'block';
+                    return;
+                }
+
+                // Email validation
+                const emailField = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailField.value.trim() && !emailRegex.test(emailField.value.trim())) {
+                    emailField.focus();
+                    emailField.style.borderColor = '#D16B6B';
+                    statusEl.className = 'form-status error';
+                    statusEl.textContent = 'Please enter a valid email address.';
+                    statusEl.style.display = 'block';
+                    return;
+                }
+
+                // Phone validation (simple: at least 9 digits)
+                const phoneField = document.getElementById('phone');
+                const phoneDigits = phoneField.value.replace(/\D/g, '');
+                if (phoneDigits.length < 9) {
+                    phoneField.focus();
+                    phoneField.style.borderColor = '#D16B6B';
+                    statusEl.className = 'form-status error';
+                    statusEl.textContent = 'Please enter a valid phone number (at least 9 digits).';
+                    statusEl.style.display = 'block';
+                    return;
+                }
+
+                // Prepare data
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value.trim();
+                });
+
+                // ── REPLACE WITH YOUR FORMSPREE ID ──
+                const FORMSPREE_ID = 'xdareabv';
+                const endpoint = `https://formspree.io/f/${FORMSPREE_ID}`;
+
+                isSubmitting = true;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending…';
+                statusEl.className = 'form-status loading';
+                statusEl.textContent = 'Submitting your details…';
+                statusEl.style.display = 'block';
+
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        // Success
+                        statusEl.style.display = 'none';
+                        form.style.display = 'none';
+                        successState.classList.add('active');
+                        // Reset form
+                        form.reset();
+                    } else {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Something went wrong. Please try again.');
+                    }
+                } catch (error) {
+                    statusEl.className = 'form-status error';
+                    statusEl.textContent = error.message || 'Network error. Please check your connection and try again.';
+                    statusEl.style.display = 'block';
+                } finally {
+                    isSubmitting = false;
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML =
+                        'Submit <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>';
+                }
+            }
+
+            // ── Reset to landing ──
+            function resetToLanding() {
+                successState.classList.remove('active');
+                form.style.display = 'block';
+                statusEl.style.display = 'none';
+                statusEl.className = 'form-status';
+                statusEl.textContent = '';
+                form.reset();
+                document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(f => {
+                    f.style.borderColor = '';
+                });
+                showPage('page-landing');
+            }
+
+            // ── Event listeners ──
+            btnJoin.addEventListener('click', () => {
+                showPage('page-categories');
+            });
+
+            btnBackLanding.addEventListener('click', () => {
+                showPage('page-landing');
+            });
+
+            btnBackCategories.addEventListener('click', () => {
+                showPage('page-categories');
+            });
+
+            btnReset.addEventListener('click', resetToLanding);
+
+            categoryCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const cat = card.dataset.category;
+                    if (cat) selectCategory(cat);
+                });
+
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const cat = card.dataset.category;
+                        if (cat) selectCategory(cat);
+                    }
+                });
+            });
+
+            form.addEventListener('submit', handleSubmit);
+
+            // ── Remove validation styling on input ──
+            document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
+                field.addEventListener('input', () => {
+                    field.style.borderColor = '';
+                    if (statusEl.style.display === 'block' && statusEl.className.includes('error')) {
+                        statusEl.style.display = 'none';
+                    }
+                });
+                field.addEventListener('change', () => {
+                    field.style.borderColor = '';
+                });
+            });
+
+            // ── Handle back/forward browser buttons ──
+            window.addEventListener('popstate', (e) => {
+                // Simple: just show landing if state is not managed
+                // We'll keep it simple — user can use our internal nav
+            });
+
+            // ── Keyboard shortcut: Escape to go back ──
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (pageForm.classList.contains('active')) {
+                        if (successState.classList.contains('active')) {
+                            resetToLanding();
+                        } else {
+                            showPage('page-categories');
+                        }
+                    } else if (pageCategories.classList.contains('active')) {
+                        showPage('page-landing');
+                    }
+                }
+            });
+
+            // ── Ensure success state is hidden on form page load ──
+            // (already hidden by default)
+
+            console.log('Eyethu Commerce Waitlist · Ready');
+            console.log('⚠️  Replace FORMSPREE_ID with your own Formspree endpoint ID.');
+
+        })();
+    </script>
+
+</body>
+</html>
